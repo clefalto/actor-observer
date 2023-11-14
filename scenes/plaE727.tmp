@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4x3ysbb3iyn4"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_66biq"]
+[ext_resource type="Texture2D" uid="uid://bvw6mix8d8hes" path="res://assets/sprites/player.png" id="2_2umjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxo7v"]
+size = Vector2(8, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsw1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2umjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+z_index = 1
+lock_rotation = true
+script = ExtResource("1_66biq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uxo7v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gsw1k")
+
+[node name="CrushArea" type="Area2D" parent="."]
+
+[node name="CrushHitbox" type="CollisionShape2D" parent="CrushArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uxo7v")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-4, 6)
+target_position = Vector2(0, 1)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(4, 6)
+target_position = Vector2(0, 1)

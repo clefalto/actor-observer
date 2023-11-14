@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2x8k2ym0d42r"]
+
+[ext_resource type="Script" path="res://scenes/moveable_block.gd" id="1_71w0t"]
+[ext_resource type="Texture2D" uid="uid://ceuvc4fn4mo6h" path="res://assets/sprites/moveable_block.png" id="2_sw3mh"]
+[ext_resource type="Texture2D" uid="uid://doawr80iwdahu" path="res://assets/sprites/moveable_block_outline.png" id="3_rogeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouoru"]
+size = Vector2(16, 16)
+
+[node name="MoveableBlock" type="AnimatableBody2D" groups=["Crusher"]]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 5.0
+input_pickable = true
+script = ExtResource("1_71w0t")
+reg_sprite = ExtResource("2_sw3mh")
+outline_sprite = ExtResource("3_rogeg")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_sw3mh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ouoru")
